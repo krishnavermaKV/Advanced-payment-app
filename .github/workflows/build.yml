@@ -23,7 +23,7 @@ jobs:
       - name: Geneate prisma client
         run: npm run db:generate
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
 
       - name: Run Build
         run: npm run build
