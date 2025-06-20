@@ -10,8 +10,11 @@ jobs:
   build:
     name: Build the project
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -27,10 +30,8 @@ jobs:
             exit 1
           fi
 
-      - name: Geneate prisma client
+      - name: Generate prisma client
         run: npm run db:generate
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Run Build
         run: npm run build
