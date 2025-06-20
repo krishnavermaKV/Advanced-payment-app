@@ -8,7 +8,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "postinstall": "turbo run postinstall"
+    "postinstall": "turbo run postinstall",
+    "db:generate": "cd packages/db && npx prisma generate && cd ../.."
   },
   "devDependencies": {
     "@types/react": "^19.1.7",
