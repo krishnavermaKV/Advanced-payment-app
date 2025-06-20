@@ -20,6 +20,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Check DATABASE_URL
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "DATABASE_URL is not set."
+            exit 1
+          fi
+
       - name: Geneate prisma client
         run: npm run db:generate
         env:
