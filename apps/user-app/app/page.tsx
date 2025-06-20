@@ -6,6 +6,7 @@ import { authOptions } from "./lib/auth";
 
 const client = new PrismaClient();
 
+
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
