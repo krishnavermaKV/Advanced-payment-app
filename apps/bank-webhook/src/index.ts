@@ -1,7 +1,7 @@
 import express from "express"
-// import { PrismaClient } from "@repo/db/client";
+import db from "@repo/db/client";
 import "dotenv/config";
-// const  db = new PrismaClient();
+
 const app = express();
 app.use(express.json());
 app.post("/hdfcbankWebhook", async (req, res) => {
@@ -15,26 +15,26 @@ app.post("/hdfcbankWebhook", async (req, res) => {
      // Update balance in db, add txn
      //transactions
      try{
-      //   await db.$transaction([
-      //     db.balance.updateMany({
-      //         where: {
-      //           userId: paymentInformation.userId
-      //         },
-      //         data: {
-      //           amount: {
-      //             increment: Number(paymentInformation.amount)        
-      //           }
-      //         }
-      //    }),
-      //   db.onRampTransaction.updateMany({
-      //      where: {
-      //        token: paymentInformation.token
-      //      },
-      //      data: {
-      //        status: "Success"
-      //      }
-      //   })
-      // ]);
+        await db.$transaction([
+          db.balance.updateMany({
+              where: {
+                userId: paymentInformation.userId
+              },
+              data: {
+                amount: {
+                  increment: Number(paymentInformation.amount)        
+                }
+              }
+         }),
+        db.onRampTransaction.updateMany({
+           where: {
+             token: paymentInformation.token
+           },
+           data: {
+             status: "Success"
+           }
+        })
+      ]);
       res.status(200).json({
           message: "Captured"
       })
