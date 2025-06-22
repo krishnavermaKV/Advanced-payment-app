@@ -24,11 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-        <Providers >
-            <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen w-full bg-gray-50`}>
-             {children}
-            </body>
-        </Providers>    
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen w-full bg-gray-50`}>
+             <Providers >
+                {children}
+             </Providers> 
+         </body>   
     </html>
   );
 }

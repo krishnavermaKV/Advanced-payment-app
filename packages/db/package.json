@@ -2,17 +2,21 @@
     "name": "@repo/db",
     "version": "0.0.0",
     "dependencies": {
-        "@prisma/client": "^5.9.0",
+        "@prisma/client": "^5.22.0",
         "bcrypt": "^6.0.0"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
-        "prisma": "^5.9.0"
+        "prisma": "^6.10.1"
     },
     "exports": {
-        "./client": "./index.ts"
+        ".": "./dist/index.js",
+        "./client": "./src/index.js"
     },
     "prisma": {
         "seed": "ts-node prisma/seed.ts"
+    },
+    "scripts": {
+    "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js"
     }
 }
